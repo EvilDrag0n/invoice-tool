@@ -1,0 +1,28 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environments
+.venv/
+.venv-build/
+venv/
+
+# Build artifacts
+build/
+dist/
+*.spec.tmp
+
+# Local outputs
+out/
+
+# Local planning / agent files
+.sisyphus/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+nul
+
+# Local-only QA helper with hardcoded paths
+qa_script.py
