@@ -69,6 +69,26 @@ python -m invoice_tool.gui
 - 实时显示处理进度与当前状态
 - 可在界面内查看失败文件和重复冲突详情
 
+#### GUI 界面预览
+
+初始化界面：
+
+![发票提取工具初始化界面](./img/invoice-tool-start.png)
+
+处理中界面：
+
+![发票提取工具处理中界面](./img/invoice-tool-progresing.png)
+
+处理完成界面：
+
+![发票提取工具处理完成界面](./img/invoice-tool-finish.png)
+
+#### 导出结果预览
+
+导出的 Excel 表格示意：
+
+![导出 Excel 表格预览](./img/invoice-tool-export-excel.png)
+
 ## 构建 Windows EXE
 
 仓库中已包含基于 PyInstaller 的 Windows 打包配置。

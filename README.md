@@ -69,6 +69,26 @@ GUI highlights:
 - Track progress and processing status in real time
 - Review failed files and duplicate conflicts inside the app
 
+#### GUI preview
+
+Initial screen:
+
+![Invoice Tool initial screen](./img/invoice-tool-start.png)
+
+Processing state:
+
+![Invoice Tool processing state](./img/invoice-tool-progresing.png)
+
+Completed state:
+
+![Invoice Tool completed state](./img/invoice-tool-finish.png)
+
+#### Exported Excel preview
+
+Example of the generated workbook:
+
+![Exported Excel preview](./img/invoice-tool-export-excel.png)
+
 ## Build a Windows EXE
 
 This repository includes a PyInstaller-based Windows packaging setup.
