@@ -4,10 +4,6 @@
 
 Extract structured data from text-based PDF invoices and export aggregated results to Excel. The project provides both a command-line interface for batch processing and a drag-and-drop desktop GUI for everyday use.
 
-> Recommended GitHub repository name: `invoice-tool`
->
-> Suggested GitHub description: `Extract data from text-based PDF invoices and export aggregated results to Excel via CLI or GUI.`
-
 ## Features
 
 - Extract invoice fields from text-based PDF files

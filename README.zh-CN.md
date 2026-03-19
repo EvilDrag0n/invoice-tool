@@ -4,10 +4,6 @@
 
 从可读取文本的 PDF 发票中提取结构化字段，并汇总导出为 Excel。项目同时提供适合批量处理的命令行工具，以及支持拖放的桌面图形界面，方便日常使用。
 
-> 推荐 GitHub 仓库名：`invoice-tool`
->
-> 推荐 GitHub Description：`Extract data from text-based PDF invoices and export aggregated results to Excel via CLI or GUI.`
-
 ## 功能特性
 
 - 从文本型 PDF 发票中提取关键字段
