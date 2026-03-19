@@ -1,6 +1,6 @@
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Callable, Dict, List, Optional
+from typing import Callable, Dict, List, Optional, Tuple
 
 from invoice_tool.domain.models import InvoiceRecord
 
@@ -38,4 +38,4 @@ class ResolvedInput:
     mode: str
     input_path: Path
     output_path: Path
-    pdf_paths: tuple[Path, ...]
+    pdf_paths: Tuple[Path, ...]

@@ -1,0 +1,5 @@
+pdfplumber
+openpyxl
+tkinterdnd2
+cryptography<42.0.6
+Pillow<11.0.0

@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from typing import Tuple
 
 @dataclass(frozen=True)
 class InvoiceRecord:
@@ -17,7 +18,7 @@ class InvoiceRecord:
     税额: str  # Normalized decimal string
     价税合计: str  # Normalized decimal string
     是否完整: bool = True
-    缺失字段: tuple[str, ...] = ()
+    缺失字段: Tuple[str, ...] = ()
 
     def to_dict(self):
         return {

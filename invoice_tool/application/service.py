@@ -1,4 +1,5 @@
 from pathlib import Path
+from typing import Dict, List
 
 from invoice_tool.application.contracts import ProcessRequest, ProcessResult
 from invoice_tool.application.errors import InvoiceToolError, NoSuccessfulInvoicesError
@@ -18,11 +19,11 @@ def process_invoices(request: ProcessRequest) -> ProcessResult:
         request.progress_callback("processing", 0, total_files, f"Found {total_files} files...")
 
     processed_count = 0
-    failed_files: list[str] = []
+    failed_files: List[str] = []
     duplicate_skips = 0
     conflict_skips = 0
-    conflicts: dict[str, str] = {}
-    records_by_invoice_number: dict[str, object] = {}
+    conflicts: Dict[str, str] = {}
+    records_by_invoice_number: Dict[str, object] = {}
 
     for pdf_path in resolved_input.pdf_paths:
         processed_count += 1
@@ -75,7 +76,7 @@ def process_invoices(request: ProcessRequest) -> ProcessResult:
 
 
 def _build_conflict_summary(existing_record, incoming_record) -> str:
-    differing_fields: list[str] = []
+    differing_fields: List[str] = []
     for field_name in (
         "文件名",
         "开票日期",

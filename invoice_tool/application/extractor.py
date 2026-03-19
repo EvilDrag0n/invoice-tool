@@ -1,5 +1,6 @@
 import re
 from pathlib import Path
+from typing import Dict, List, Tuple, Union
 
 from invoice_tool.application.normalizer import collapse_whitespace, normalize_date, normalize_decimal
 from invoice_tool.domain.models import InvoiceRecord
@@ -18,13 +19,13 @@ FIELD_NAMES = (
 )
 
 
-def extract_invoice_record(text: str, file_path: str | Path) -> InvoiceRecord:
+def extract_invoice_record(text: str, file_path: Union[str, Path]) -> InvoiceRecord:
     normalized_text = text.replace("：", ":")
     normalized_text = normalized_text.replace("（", "(").replace("）", ")")
     source_path = Path(file_path)
 
-    extracted_values: dict[str, str] = {}
-    missing_fields: list[str] = []
+    extracted_values: Dict[str, str] = {}
+    missing_fields: List[str] = []
 
     invoice_number = _optional_match(normalized_text, r"发票号码[:\s]*([0-9]{8,})")
     issue_date_raw = _optional_match(normalized_text, r"开票日期[:\s]*([0-9]{4}年[0-9]{1,2}月[0-9]{1,2}日)")
@@ -70,7 +71,7 @@ def _optional_match(text: str, pattern: str) -> str:
     return match.group(1).strip()
 
 
-def _extract_counterparty_names(text: str) -> tuple[str, str]:
+def _extract_counterparty_names(text: str) -> Tuple[str, str]:
     line_patterns = (
         r"买\s*名\s*称\s*([^\n]+?)\s*售\s*名\s*称\s*([^\n]+)",
         r"购\s*名称\s*([^\n]+?)\s*销\s*名称\s*([^\n]+)",
@@ -92,9 +93,9 @@ def _clean_counterparty_name(value: str) -> str:
     return cleaned.strip()
 
 
-def _extract_counterparty_tax_ids(text: str) -> tuple[str, str]:
+def _extract_counterparty_tax_ids(text: str) -> Tuple[str, str]:
     tax_ids = re.findall(r"([0-9A-Z]{10,})", text)
-    unique_tax_ids: list[str] = []
+    unique_tax_ids: List[str] = []
     for tax_id in tax_ids:
         if tax_id not in unique_tax_ids:
             unique_tax_ids.append(tax_id)
@@ -105,7 +106,7 @@ def _extract_counterparty_tax_ids(text: str) -> tuple[str, str]:
     return "", ""
 
 
-def _extract_totals(text: str) -> tuple[str, str]:
+def _extract_totals(text: str) -> Tuple[str, str]:
     match = re.search(r"合\s*计\s*¥?(-?[0-9]+(?:\.[0-9]+)?)\s+([*¥]?-?[0-9]+(?:\.[0-9]+)?|\*)", text)
     if not match:
         return "", ""

@@ -105,12 +105,48 @@ After a successful build, the GUI executable is generated at:
 dist\InvoiceTool\InvoiceTool.exe
 ```
 
+To build a Windows 7/8 compatibility-targeted package with Python 3.8, run:
+
+```bat
+build_exe_legacy_win7_8.bat
+```
+
+That legacy-compatible output is generated at:
+
+```text
+dist-win7-8\InvoiceTool\InvoiceTool.exe
+```
+
 Notes:
 
 - The build is based on the GUI entrypoint only
 - `InvoiceTool.spec` explicitly collects `tkinterdnd2` resources
 - The build script recreates `.venv-build` to keep packaging isolated
 - Distribute the full `dist\InvoiceTool\` folder, not only the `.exe`
+
+### Windows compatibility notes
+
+The packaged executable is built with the local Python interpreter used by `build_exe.bat`.
+
+- **Current packaged build target**: Windows 10 / Windows 11
+- **Likely unsupported by the current package**: Windows 7 / Windows 8 / Windows 8.1
+- If a recipient sees an error like `api-ms-win-core-path-l1-1-0.dll` missing, the target machine is usually too old for the Python runtime used to build the package, or it is missing required modern Windows runtime components.
+
+For recipient machines, check the following first:
+
+1. Use Windows 10 or Windows 11 with current system updates.
+2. Install **Microsoft Visual C++ Redistributable 2015-2022 (x64)**.
+3. Launch `dist\InvoiceTool\InvoiceTool.exe` from the unpacked folder.
+
+### If you need a legacy Windows-compatible package
+
+If you must support Windows 7/8/8.1, do **not** build with Python 3.14.
+
+- Use **Python 3.8.x** as the packaging interpreter.
+- Ideally build on the oldest Windows version you want to support, or in a matching VM.
+- Run `build_exe_legacy_win7_8.bat` to build the legacy-targeted package with `py -3.8`.
+- The resulting folder to distribute is `dist-win7-8\InvoiceTool\`.
+- The legacy build uses `requirements-legacy-win7-8.txt` to keep core binary dependencies within a Windows 7/8 friendlier range.
 
 ## Project Structure
 

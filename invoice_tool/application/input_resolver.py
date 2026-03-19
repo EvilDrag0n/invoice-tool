@@ -1,4 +1,5 @@
 from pathlib import Path
+from typing import Union
 
 from invoice_tool.application.contracts import ResolvedInput
 from invoice_tool.application.errors import (
@@ -9,7 +10,7 @@ from invoice_tool.application.errors import (
 )
 
 
-def resolve_input(input_path: str | Path, output_path: str | Path, overwrite: bool = False) -> ResolvedInput:
+def resolve_input(input_path: Union[str, Path], output_path: Union[str, Path], overwrite: bool = False) -> ResolvedInput:
     source_path = Path(input_path)
     target_path = Path(output_path)
 

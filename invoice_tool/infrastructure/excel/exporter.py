@@ -1,4 +1,5 @@
 from pathlib import Path
+from typing import List, Union
 
 from openpyxl import Workbook
 from openpyxl.styles import PatternFill
@@ -22,7 +23,7 @@ EXPORT_COLUMNS = [
 INCOMPLETE_ROW_FILL = PatternFill(fill_type="solid", start_color="FFF2CC", end_color="FFF2CC")
 
 
-def export_records_to_excel(records: list[InvoiceRecord], output_path: str | Path) -> Path:
+def export_records_to_excel(records: List[InvoiceRecord], output_path: Union[str, Path]) -> Path:
     target_path = Path(output_path)
     target_path.parent.mkdir(parents=True, exist_ok=True)
     workbook = Workbook()
@@ -37,7 +38,7 @@ def export_records_to_excel(records: list[InvoiceRecord], output_path: str | Pat
     return target_path
 
 
-def _style_incomplete_rows(worksheet, records: list[InvoiceRecord]) -> None:
+def _style_incomplete_rows(worksheet, records: List[InvoiceRecord]) -> None:
     for row_index, record in enumerate(records, start=2):
         if record.是否完整:
             continue
